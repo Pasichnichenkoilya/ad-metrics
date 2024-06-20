@@ -36,7 +36,7 @@ public class AdMetricsController {
         return adMetrics.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PatchMapping("/ads")
+    @PutMapping("/ads")
     public boolean updateAdMetrics(@RequestBody AdMetrics adMetrics) {
         return adMetricsService.updateAdMetrics(adMetrics);
     }
