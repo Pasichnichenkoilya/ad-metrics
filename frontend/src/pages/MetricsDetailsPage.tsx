@@ -41,7 +41,6 @@ export default function MetricsDetailsPage() {
   };
 
   const data = [
-    { name: "adName", value: adMetrics.data.adName },
     { name: "clicks", value: adMetrics.data.clicks },
     { name: "views", value: adMetrics.data.views },
     { name: "bought", value: adMetrics.data.bought },
