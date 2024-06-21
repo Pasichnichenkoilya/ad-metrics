@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 import { RxCross2 } from "react-icons/rx";
-import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 export default function Searchbar() {
-  const navigate = useNavigate();
   const [value, setValue] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    navigate(`/dashboard/?name=${value}`);
-  }, [value, navigate]);
+    if (value) {
+      searchParams.set("name", value);
+    } else {
+      searchParams.delete("name");
+    }
+    setSearchParams(searchParams, { replace: true });
+  }, [value, searchParams, setSearchParams]);
 
   return (
     <div className="mx-auto flex h-12 w-full max-w-xl overflow-hidden rounded-md bg-slate-700">
