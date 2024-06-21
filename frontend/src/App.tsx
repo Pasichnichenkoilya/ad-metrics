@@ -8,12 +8,14 @@ import MetricsDetailsPage from "./pages/MetricsDetailsPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import MetricsCreationPage from "./pages/MetricsCreationPage";
+import Navbar from "./components/Navbar";
 
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="flex h-dvh bg-slate-800 text-slate-100">
+      <div className="flex h-dvh flex-col bg-slate-800 text-slate-100 md:flex-row">
         <Sidebar />
+        <Navbar />
         <main className="min-h-0 flex-1 overflow-y-scroll p-2 md:p-5">
           <Routes>
             <Route index element={<HomePage />} />

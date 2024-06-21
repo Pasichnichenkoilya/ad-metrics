@@ -31,7 +31,7 @@ export default function Sidebar() {
   return (
     <aside
       className={cn(
-        "h-full w-14 space-y-1 overflow-hidden bg-slate-700 p-2 duration-200",
+        "hidden h-full w-14 space-y-1 overflow-hidden bg-slate-700 p-2 duration-200 md:block",
         { "w-48": open },
       )}
     >

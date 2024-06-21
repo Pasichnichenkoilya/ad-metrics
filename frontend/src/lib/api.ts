@@ -30,3 +30,10 @@ export async function createAdMetrics(
   );
   return response.data;
 }
+
+export async function deleteAdMetrics(id: string): Promise<AdMetrics> {
+  const response = await axios.delete(
+    `http://localhost:8080/metrics/ads/${id}`,
+  );
+  return response.data;
+}
