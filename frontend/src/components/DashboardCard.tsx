@@ -1,13 +1,22 @@
 import { Link } from "react-router-dom";
 import { AdMetrics } from "../lib/types";
+import { MdDelete } from "react-icons/md";
 
 export default function DashboardCard(props: AdMetrics) {
   return (
-    <div className="min-h-32 grow rounded-md bg-slate-700 p-2">
-      <h1>{props.adName}</h1>
+    <div className="group relative min-h-32 grow rounded-md bg-slate-700 p-2">
+      <button className="invisible absolute right-1 top-1 rounded-full p-1 text-xl hover:bg-slate-600 group-hover:visible">
+        <MdDelete />
+      </button>
+      <Link
+        to={`/metrics/${props.id}`}
+        className="w-fit cursor-pointer hover:underline"
+      >
+        {props.adName}
+      </Link>
       <div className="flex gap-3">
         <div>
-          <p>Hovers: {props.bought}</p>
+          <p>Hovers: {props.hovered}</p>
           <p>Clicks: {props.clicks}</p>
         </div>
         <div>
