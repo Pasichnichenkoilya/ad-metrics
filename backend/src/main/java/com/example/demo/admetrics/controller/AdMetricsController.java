@@ -3,6 +3,7 @@ package com.example.demo.admetrics.controller;
 import com.example.demo.model.AdMetrics;
 import com.example.demo.service.AdMetricsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,8 +38,13 @@ public class AdMetricsController {
     }
 
     @PutMapping("/ads")
-    public boolean updateAdMetrics(@RequestBody AdMetrics adMetrics) {
-        return adMetricsService.updateAdMetrics(adMetrics);
+    public ResponseEntity<String> updateAdMetrics(@RequestBody AdMetrics adMetrics) {
+        boolean updateSuccessful = adMetricsService.updateAdMetrics(adMetrics);
+        if (updateSuccessful) {
+            return ResponseEntity.ok("Ad metrics updated successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to update ad metrics");
+        }
     }
 
     @DeleteMapping("/ads/{id}")
