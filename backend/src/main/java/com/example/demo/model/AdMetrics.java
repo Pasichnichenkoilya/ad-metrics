@@ -11,6 +11,10 @@ public class AdMetrics {
     private int bought;
     private int hovered;
 
+    public AdMetrics() {
+        this.id = UUID.randomUUID().toString();
+    }
+
     public AdMetrics(String adName, int clicks, int views, String[] tags, int bought, int hovered) {
         this.bought = bought;
         this.hovered = hovered;
@@ -21,14 +25,14 @@ public class AdMetrics {
         this.tags = tags;
     }
 
-    public AdMetrics(AdMetrics other, int hovered) {
-        this.id = other.id;
+    public AdMetrics(AdMetrics other) {
+        this.id = other.id.isEmpty() ? UUID.randomUUID().toString() : other.id;
         this.adName = other.adName;
         this.clicks = other.clicks;
         this.views = other.views;
         this.tags = other.tags;
         this.bought = other.bought;
-        this.hovered = hovered;
+        this.hovered = other.hovered;
     }
 
     public String getId() {

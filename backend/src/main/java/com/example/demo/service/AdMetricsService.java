@@ -15,7 +15,7 @@ public class AdMetricsService {
     public AdMetricsService() {
         adMetricsData = new ArrayList<>(Arrays.asList(
                 new AdMetrics("Cat food", 50, 1000, new String[]{"pets", "cats", "pet food", "cat food", "discount"}, 54, 6245),
-                new AdMetrics("Dog toys", 75, 1500, new String[]{"pets", "dogs", "dog toys", "chew toys", "discount"}, 12, 4678),
+                new AdMetrics("Dog food", 75, 1500, new String[]{"pets", "dogs", "pet food", "discount"}, 12, 4678),
                 new AdMetrics("Organic Snacks", 100, 5000, new String[]{"food", "organic", "healthy", "sale"}, 89, 8921),
                 new AdMetrics("Running Shoes", 200, 2500, new String[]{"sports", "running", "shoes", "fitness", "discount"}, 27, 3137),
                 new AdMetrics("Smartphones", 300, 8000, new String[]{"electronics", "smartphones", "mobile", "sale"}, 63, 7542),
@@ -43,7 +43,8 @@ public class AdMetricsService {
     }
 
     public void createAdMetrics(AdMetrics adMetrics) {
-        adMetricsData.add(adMetrics);
+        AdMetrics newMetric = new AdMetrics(adMetrics);
+        adMetricsData.add(newMetric);
     }
 
     public Optional<AdMetrics> getAdMetricsById(String id) {
@@ -70,11 +71,14 @@ public class AdMetricsService {
             return false;
         }
 
-        adMetricsToUpdate.get().setAdName(adMetrics.getAdName());
-        adMetricsToUpdate.get().setViews(adMetrics.getViews());
-        adMetricsToUpdate.get().setClicks(adMetrics.getClicks());
-        adMetricsToUpdate.get().setTags(adMetrics.getTags());
-        adMetricsToUpdate.get().setBought(adMetrics.getBought());
+        AdMetrics metrics = adMetricsToUpdate.get();
+
+        metrics.setAdName(adMetrics.getAdName());
+        metrics.setViews(adMetrics.getViews());
+        metrics.setClicks(adMetrics.getClicks());
+        metrics.setTags(adMetrics.getTags());
+        metrics.setBought(adMetrics.getBought());
+        metrics.setHovered(adMetrics.getHovered());
 
         return true;
     }
