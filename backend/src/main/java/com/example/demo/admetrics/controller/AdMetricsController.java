@@ -21,9 +21,12 @@ public class AdMetricsController {
     }
 
     @PostMapping("/ads")
-    public AdMetrics createAdMetrics(@RequestBody AdMetrics adMetrics) {
+    public ResponseEntity<String> createAdMetrics(@RequestBody AdMetrics adMetrics) {
+        if (!adMetricsService.isValid(adMetrics))
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid data");
+
         adMetricsService.createAdMetrics(adMetrics);
-        return adMetrics;
+        return ResponseEntity.ok("Created successfully");
     }
 
     @GetMapping("/ads")
@@ -48,7 +51,12 @@ public class AdMetricsController {
     }
 
     @DeleteMapping("/ads/{id}")
-    public boolean deleteAdMetricsById(@PathVariable("id") String id) {
-        return adMetricsService.deleteAdMetricsById(id);
+    public ResponseEntity<String> deleteAdMetricsById(@PathVariable("id") String id) {
+        boolean deleteSuccessful = adMetricsService.deleteAdMetricsById(id);
+        if (deleteSuccessful) {
+            return ResponseEntity.ok("Ad metrics deleted successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Failed to delete ad metrics");
+        }
     }
 }
