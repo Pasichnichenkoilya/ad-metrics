@@ -48,8 +48,7 @@ public class AdMetricsService {
     }
 
     public boolean isValid(AdMetrics adMetrics) {
-        return !adMetrics.getId().isEmpty() &&
-                !adMetrics.getAdName().isEmpty() &&
+        return !adMetrics.getAdName().isEmpty() &&
                 adMetrics.getClicks() >= 0 &&
                 adMetrics.getViews() >= 0 &&
                 adMetrics.getBought() >= 0 &&
